@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        // JavaScript to redirect to the home route on page reload
+        if (performance.navigation.type == 1) {
+            window.location.href = "{{ url_for('home') }}";
+        }
+    </script>
+</head>
+<body>
+    <form action="{{ url_for('predict')}}" method="post">
+        <input type="text" name="userText" placeholder="Enter text" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <div id="prediction">
+        {% if prediction_text %}
+            <p> "{{ user_text }}" : {{ prediction_text }}</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>
